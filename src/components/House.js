@@ -4,18 +4,14 @@ import { useState } from 'react'
 
 export default function House() {
   const [password, setPassword] = useState('')
-  function openSafe(backupPassword) {
-    setPassword(backupPassword)
-  }
-
-  function closeSafe(wrongPassword) {
-    setPassword(wrongPassword)
-  }
 
   return (
     <div>
-      <SafeRoom password={password} onCloseSafe={closeSafe} />
-      <FireWall onOpenSafe={openSafe} />
+      <SafeRoom password={password} onCloseSafe={openAndCloseSafe} />
+      <FireWall onOpenSafe={openAndCloseSafe} />
     </div>
   )
+  function openAndCloseSafe(backupPassword) {
+    setPassword(backupPassword)
+  }
 }
